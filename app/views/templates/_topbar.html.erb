@@ -1,0 +1,43 @@
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+  
+        <!-- Topbar Search -->
+        <%= render partial: 'templates/topbars/search' %>
+        <!-- Topbar Navbar -->
+        <%= render partial: 'templates/navbar' %>
+  
+      </nav>
+  
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <%= render partial: 'templates/notificaciones' %>
+  
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+          <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        </div>
+  
+        <!-- Card -->
+        <!--<= render partial: 'template/cards' %>-->
+        <!-- End of Card -->
+        <%= yield %>
+      </div>
+      <!-- /.container-fluid -->
+      <!-- End of Topbar -->
+    </div>
+    <!-- End of Main Content -->
+    <!-- Footer -->
+    <%= render partial: 'templates/footer' %>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->

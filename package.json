@@ -1,0 +1,22 @@
+{
+  "name": "new_template",
+  "private": true,
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^5.4.3",
+    "@ttskch/select2-bootstrap4-theme": "^1.5.2",
+    "bootstrap": "^5.2.0",
+    "datatables": "^1.10.18",
+    "datatables.net-buttons-bs4": "^2.2.3",
+    "jquery": "^3.6.0",
+    "startbootstrap-sb-admin-2": "^4.1.4",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^4.10.0"
+  }
+}
