@@ -20,10 +20,112 @@ import "startbootstrap-sb-admin-2/vendor/jquery/jquery";
 import "@popperjs/core/dist/umd/popper";
 import "startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle";
 import "startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing";
-import "datatables/media/js/jquery.dataTables";
 import "startbootstrap-sb-admin-2/js/sb-admin-2";
+import "datatables/media/js/jquery.dataTables";
+import "datatables.net-bs4/js/dataTables.bootstrap4";
+import "datatables.net-buttons/js/dataTables.buttons";
+import "datatables.net-buttons-bs4/js/buttons.bootstrap4";
+import "datatables.net-buttons/js/buttons.html5";
+import "datatables.net-buttons/js/buttons.print";
+import "datatables.net-buttons/js/buttons.colVis";
+import "jszip/dist/jszip";
+import "pdfmake/build/pdfmake";
+import "pdfmake/build/vfs_fonts";
+
+var pdfMake = require('pdfmake/build/pdfmake.js');
+var pdfFonts = require('pdfmake/build/vfs_fonts.js');
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
  
 document.addEventListener("turbolinks:load", () => {
+    /* *******************************************************
+      * Configuracion para dataTables
+      * ******************************************************** */
+    var espaniol = {
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "zeroRecords": "No se encontraron resultados",
+        "info": "Mostrando _END_ registros, de un total de _TOTAL_ registros",
+        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sSearch": "Buscar:",
+        "oPaginate": {
+            "sFirst": "Inicio",
+            "sLast":"Último",
+            "sNext":"Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "sProcessing":"Procesando...",
+    }
+
+    var var_dom = "<'row'<'col-sm-3'l><'col-sm-5'B><'col-sm-4'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-4'i><'col-sm-3 text-center'p>>";
+
+    $(document).ajaxSend(function (e, xhr, options){
+        var token = $("meta[name='csrf-token']").attr("content");
+        xhr.setRequestHeader("X-CSRF-Token", token);
+    });
+
+    $('#example').DataTable({
+        fixedHeader: true,
+        stateSave: true,
+        stateDuration: 1200,
+        responsive: "true",
+        dom: var_dom,
+        language: espaniol,
+        lengthChange: true,
+        select: true,
+        order: [0, 'asc'],
+        buttons:[
+            {
+                text:      'CSV <i class="fas fa-file-csv"></i> ',
+                extend:    'csvHtml5',
+                fieldSeparator: '\t',
+                extension: '.csv',
+                titleAttr: 'Si desea exportar el archivo, Dar click en CSV',
+                className: 'btn btn-warning'
+            },
+            {
+                text:      'Excel <i class="fas fa-file-excel"></i> ',
+                extend:     'csvHtml5',
+                fieldSeparator: '\t',
+                extension: '.xlsx',
+                titleAttr: 'Si desea exportar el archivo, Dar click en EXCEL',
+                className: 'btn btn-success',
+                messageTop: 'La exportación excel, se ha realizado correctamente'
+            },
+            {
+                text:      'PDF <i class="fas fa-file-pdf"></i> ',
+                extend:    'pdfHtml5',
+                titleAttr: 'Si desea exportar el archivo, Dar click en PDF',
+                className: 'btn btn-danger',
+                messageTop: 'PDF created by PDFMake with Buttons for DataTables.'
+            },
+            {
+                text:      'Print <i class="fas fa-print"></i> ',
+                extend:    'print',
+                titleAttr: 'Si desea imprimr, Dar click en PRINT',
+                className: 'btn btn-info',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                text: 'JSON',
+                titleAttr: 'Si desea exportar el archivo, Dar click en JSON',
+                className: 'btn btn-danger',
+                action: function ( e, dt, button, config ) {
+                    var data = dt.buttons.exportData();
+
+                    $.fn.dataTable.fileSave(
+                        new Blob( [ JSON.stringify( data ) ] ),
+                        'Export.json'
+                    );
+                }
+            },
+        ],
+        pagingType: "simple_numbers"
+    });
+
     /* *******************************************************
       * Para controlar el sidebar en posición cerrado o abierto
       * ******************************************************** */
@@ -57,7 +159,8 @@ document.addEventListener("turbolinks:load", () => {
     if (sidebarState === 'toggled') {
         $(".menu_sb").addClass("collapsed");
         $(".opcion_sb").removeClass("show");
-    }
+    };
+
     /* *******************************************************
      * Fin para controlar el sidebar en posición cerrado o abierto
      * ******************************************************** */
@@ -84,115 +187,6 @@ document.addEventListener("turbolinks:load", () => {
             $(".alert").slideUp(4000);
         });
     });
-
-
-    $(document).ready(function() {    
-        $('#example').DataTable({        
-            language: {
-                    "lengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast":"Último",
-                        "sNext":"Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "sProcessing":"Procesando...",
-                },
-            //para usar los botones   
-            responsive: "true",
-            dom: 'Bfrtilp',  
-            lengthChange: true,  
-            select: true,
-            buttons:[ 
-                {
-                    extend: 'colvis',
-                    collectionLayout: 'fixed columns',
-                    collectionTitle: 'Column visibility control'
-                },
-                {
-                    text:      '<i class="fas fa-file-excel"></i> ',
-                    extend:    'csvHtml5',
-                    fieldSeparator: '\t',
-                    extension: '.tsv',
-                    titleAttr: 'Exportar a CSV',
-                    className: 'btn btn-warning'
-                },
-                {
-                    extend:    'excelHtml5',
-                    text:      '<i class="fas fa-file-excel"></i> ',
-                    titleAttr: 'Exportar a Excel',
-                    className: 'btn btn-success',
-                    fieldSeparator: '\t',
-                    extension: '.xlsx'
-                },
-                {
-                    extend:    'pdfHtml5',
-                    text:      '<i class="fas fa-file-pdf"></i> ',
-                    titleAttr: 'Exportar a PDF',
-                    className: 'btn btn-danger',
-                    messageTop: 'PDF created by PDFMake with Buttons for DataTables.',
-                    customize: function ( doc ) {
-                        doc.content.splice( 1, 0, {
-                            margin: [ 0, 0, 0, 12 ],
-                            alignment: 'center'
-                        } );
-                    }
-                },
-                {
-                    extend:    'print',
-                    text:      '<i class="fa fa-print"></i> ',
-                    titleAttr: 'Imprimir',
-                    className: 'btn btn-info',
-                    exportOptions: {
-                        columns: ':visible'
-                    }
-                },
-                {
-                    text: 'JSON',
-                    action: function ( e, dt, button, config ) {
-                        var data = dt.buttons.exportData();
-     
-                        $.fn.dataTable.fileSave(
-                            new Blob( [ JSON.stringify( data ) ] ),
-                            'Export.json'
-                        );
-                    }
-                }
-            ]      
-        });   
-        
-    });
-
-    /*
-    $(document).ready(function() { 
-        var tableFiltro = $('#example').DataTable({
-            orderCellsTop:  true,
-            fixedHeader:    true
-        });
-    
-        //Creamos una fila en el head de la tabla y lo clonamos para cada columna
-        $('#example thead tr').clone(true).appendTo('#example thead');
-    
-        $('#example thead tr:eq(1) th').each(function(i){
-            var title = $(this).text(); //Es el nombre de la columna
-            $(this).html('<input type="text" placeholder="Search...'+title+'"/>');
-    
-            $('input', this).on('keyup change',function(){
-                if (tableFiltro.column(i).search() !== this.value){
-                    tableFiltro
-                                .column(i)
-                                .search(this.value)
-                                .draw();
-                }
-            });
-        });
-    });
-    */
 
 
 });
