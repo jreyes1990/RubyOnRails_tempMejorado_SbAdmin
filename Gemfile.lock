@@ -76,6 +76,7 @@ GEM
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     erubi (1.11.0)
+    ffi (1.15.5)
     ffi (1.15.5-x64-mingw32)
     font_awesome5_rails (1.5.0)
       nokogiri (>= 1.11.3)
@@ -100,6 +101,8 @@ GEM
     msgpack (1.5.4)
     nio4r (2.5.8)
     nokogiri (1.13.8-x64-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     public_suffix (4.0.7)
     puma (4.3.12)
@@ -142,6 +145,8 @@ GEM
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -196,6 +201,7 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
