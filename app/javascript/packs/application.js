@@ -56,9 +56,12 @@ document.addEventListener("turbolinks:load", () => {
         "sProcessing":"Procesando...",
     }
 
-    var var_dom = "<'row'<'col-sm-3'l><'col-sm-5'B><'col-sm-4'f>>" +
+    var var_dom = "" +
+        "<'row'<'col-sm-12 text-center'B>>" +
+        "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-4'i><'col-sm-3 text-center'p>>";
+        "<'row'<'col-sm-12'i>>"+
+        "<'row'<'col-sm-7 text-center'p>>";
 
     $(document).ajaxSend(function (e, xhr, options){
         var token = $("meta[name='csrf-token']").attr("content");
@@ -85,7 +88,7 @@ document.addEventListener("turbolinks:load", () => {
                 className: 'btn btn-warning'
             },
             {
-                text:      'Excel <i class="fas fa-file-excel"></i> ',
+                text:      'EXCEL <i class="fas fa-file-excel"></i> ',
                 extend:     'csvHtml5',
                 fieldSeparator: '\t',
                 extension: '.xlsx',
@@ -101,7 +104,7 @@ document.addEventListener("turbolinks:load", () => {
                 messageTop: 'PDF created by PDFMake with Buttons for DataTables.'
             },
             {
-                text:      'Print <i class="fas fa-print"></i> ',
+                text:      'PRINT <i class="fas fa-print"></i> ',
                 extend:    'print',
                 titleAttr: 'Si desea imprimr, Dar click en PRINT',
                 className: 'btn btn-info',
@@ -112,7 +115,7 @@ document.addEventListener("turbolinks:load", () => {
             {
                 text: 'JSON',
                 titleAttr: 'Si desea exportar el archivo, Dar click en JSON',
-                className: 'btn btn-danger',
+                className: 'btn btn-primary',
                 action: function ( e, dt, button, config ) {
                     var data = dt.buttons.exportData();
 
