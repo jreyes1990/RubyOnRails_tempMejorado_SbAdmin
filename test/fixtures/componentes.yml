@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: componentes
+#
+#  id              :bigint           not null, primary key
+#  nombre          :string(200)
+#  descripcion     :text
+#  user_created_id :integer
+#  user_updated_id :integer
+#  estado          :string(10)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+one:
+  nombre: MyString
+  descripcion: MyText
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+
+two:
+  nombre: MyString
+  descripcion: MyText
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
