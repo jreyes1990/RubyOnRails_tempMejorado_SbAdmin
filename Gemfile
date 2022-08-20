@@ -6,7 +6,9 @@ ruby '2.7.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.5', '>= 6.0.5.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+#gem 'sqlite3', '~> 1.4'
+
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -34,9 +36,18 @@ gem 'font_awesome5_rails'
 # Implementación de la autenticación en nuestras aplicaciones, link: https://guias.makeitreal.camp/ruby-on-rails-i/devise
 gem 'devise'
 
+#Usa para manejo de fotografias, Enlace: https://github.com/carrierwaveuploader/carrierwave/
+#Cargue archivos en sus aplicaciones de Ruby, asígnelos a una variedad de ORM, guárdelos en diferentes backends
+gem 'carrierwave'
+
+#gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+#gem 'sweet-alert2-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'guard-livereload', require: false
+  gem 'annotate'
 end
 
 group :development do
