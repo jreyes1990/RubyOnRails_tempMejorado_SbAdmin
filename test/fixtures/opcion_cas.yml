@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: opcion_cas
+#
+#  id              :bigint           not null, primary key
+#  descripcion     :text
+#  user_created_id :integer
+#  user_updated_id :integer
+#  estado          :string(10)
+#  componente_id   :bigint           not null
+#  atributo_id     :bigint           not null
+#  opcion_id       :bigint           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+one:
+  descripcion: MyText
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  componente: one
+  atributo: one
+  opcion: one
+
+two:
+  descripcion: MyText
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  componente: two
+  atributo: two
+  opcion: two
