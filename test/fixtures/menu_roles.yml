@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  menu_padre: 1
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  rol: one
+  opcion: one
+
+two:
+  menu_padre: 1
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  rol: two
+  opcion: two
