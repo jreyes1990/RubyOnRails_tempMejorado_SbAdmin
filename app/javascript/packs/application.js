@@ -31,11 +31,15 @@ import "datatables.net-buttons/js/buttons.colVis";
 import "jszip/dist/jszip";
 import "pdfmake/build/pdfmake";
 import "pdfmake/build/vfs_fonts";
+import "select2/dist/js/select2";
+
+//import './sweet-alert-confirm';
 
 var pdfMake = require('pdfmake/build/pdfmake.js');
 var pdfFonts = require('pdfmake/build/vfs_fonts.js');
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
- 
+
+
 document.addEventListener("turbolinks:load", () => {
     /* *******************************************************
       * Configuracion para dataTables
@@ -43,7 +47,7 @@ document.addEventListener("turbolinks:load", () => {
     var espaniol = {
         "lengthMenu": "Mostrar _MENU_ Entradas",
         "zeroRecords": "No se encontraron resultados",
-        "info": "Mostrando _END_ registros, de un total de _TOTAL_ registros",
+        "info": "Mostrando _END_ registros, de _TOTAL_ registros",
         "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
         "infoFiltered": "(filtrado de un total de _MAX_ registros)",
         "sSearch": "Buscar:",
@@ -54,14 +58,12 @@ document.addEventListener("turbolinks:load", () => {
             "sPrevious": "Anterior"
         },
         "sProcessing":"Procesando...",
-    }
+    };
 
     var var_dom = "" +
-        "<'row'<'col-sm-12 text-center'B>>" +
-        "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+        "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-12'i>>"+
-        "<'row'<'col-sm-7 text-center'p>>";
+        "<'row'<'col-sm-5'i><'col-sm-3 text-center'p><'col-sm-4'>>";
 
     $(document).ajaxSend(function (e, xhr, options){
         var token = $("meta[name='csrf-token']").attr("content");
@@ -126,7 +128,7 @@ document.addEventListener("turbolinks:load", () => {
                 }
             },
         ],
-        pagingType: "simple_numbers"
+        pagingType: "full_numbers"
     });
 
     /* *******************************************************
@@ -184,12 +186,21 @@ document.addEventListener("turbolinks:load", () => {
         }, 800)
     });
 
+    // Configuracion para activar select2
+    $('.select2').select2({
+        theme: "bootstrap4",
+        language: "es-GT",
+        width: '100%'
+    });
+
     //control de los tiempos de los flash
     setTimeout(function() {
         $(".alert").fadeTo(4000, 500).slideUp(500, function () {
             $(".alert").slideUp(4000);
         });
     });
+
+
 
 
 });
