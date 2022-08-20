@@ -1,0 +1,74 @@
+<!-- Inicio empresas -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h4 class="m-0 font-weight-bold text-secondary">Gestión de empresa</h4>
+  </div>
+  <div class="card-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+
+          <%= form_with(model: empresa, local: true) do |form| %>
+            <div class="row">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
+
+                <% if empresa.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(empresa.errors.count, "error") %> prohibited this empresa from being saved:</h2>
+
+                    <ul>
+                      <% empresa.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <%= form.label :codigo_empresa %>
+                    <%= form.number_field :codigo_empresa, class:"form-control", type: "number" %>
+                  </div>
+                  <div class="form-group col-md-8">
+                    <%= form.label :nombre %>
+                    <%= form.text_field :nombre, class:"form-control", type: "txt", placeholder: "Ingrese solo letras", autofocus:true, required: true, pattern: "^[A-Za-zñÑáéíóúÁÉÍÓÚ- \s]+$" %>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <%= form.label :descripcion %>
+                  <%= form.text_area :descripcion, size: '40x5', class:"form-control", type: "txt", placeholder: "", required: true %>
+                </div>
+              </div>
+              <div class="col-md-4">
+              </div>
+            </div>
+            <br><br>
+
+              <div class="actions">
+                <div class="row">
+                <div class="col-md-12 text-center">
+                  <%= button_tag form.submit, class: "btn btn-outline-success btn-sm" do %>
+                    <span class="icon text-green-50">
+                    <i class="fas fa-edit"></i>
+                    </span>
+                    <span class="text"><%= titulo_empresa.upcase %></span>
+                  <%end%>
+                  <%= link_to empresas_path, class: "btn btn-outline-danger btn-sm" do %>
+                    <span class="icon text-red-50">
+                    <i class="fas fa-arrow-circle-left"></i>
+                    </span>
+                    <span class="text">CANCELAR</span>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
