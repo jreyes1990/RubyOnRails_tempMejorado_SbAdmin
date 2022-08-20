@@ -1,26 +1,70 @@
 <!-- Nav Item - Components Collapse Menu -->
 <li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOpciones"
-     aria-expanded="true" aria-controls="collapseTwo">
+  <a class="menu_sb <%= is_active_controller_configuracion() %>" href="#" data-toggle="collapse" data-target="#collapseOpciones"
+     aria-expanded="true" aria-controls="collapseOpciones">
     <i class="fas fa-fw fa-wrench"></i>
     <span>Gestión de opciones</span>
   </a>
-  <div id="collapseOpciones" class="collapse" aria-labelledby="headingOpciones" data-parent="#accordionSidebar">
+  <div id="collapseOpciones" class="opcion_sb <%= is_active_option_controller_configuracion() %>" aria-labelledby="headingOpciones" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Opciones:</h6>
+
       <a class="collapse-item" href="#"><i class="fas fa-users"></i><span>Usuarios</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-building"></i><span>Empresas</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-sitemap"></i><span>Areas - Empresa</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-users"></i><span>Usuario - Area</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-user-tag"></i><span>Rol</span></a>
-      <a class="collapse-item" href="#"><i class="fab fa-elementor"></i><span>Menú</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-minus-square"></i><span>Opción - Menú</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-user-cog"></i><span>Menú - Rol</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-atom"></i><span>Atributos</span></a>
-      <a class="collapse-item" href="#"><i class="fab fa-codepen"></i><span>Componente</span></a>
+      <%=link_to empresas_path, class: is_active_action("empresas") do %>
+        <i class="fas fa-building"></i>
+        <span>Empresas</span>
+      <%end%>
+
+      <%=link_to areas_path, class: is_active_action("areas") do %>
+        <i class="fas fa-sitemap"></i>
+        <span>Areas - Empresa</span>
+      <%end%>
+
+      <%=link_to personas_areas_path, class: is_active_action("personas_areas")  do %>
+        <i class="fas fa-users"></i>
+        <span>Usuario - Area</span>
+      <%end%>
+
+      <%=link_to roles_path, class: is_active_action("roles")  do %>
+        <i class="fas fa-user-tag"></i>
+        <span>Rol</span>
+      <%end%>
+
+      <%=link_to menus_path, class: is_active_action("menus")  do %>
+        <i class="fab fa-elementor"></i>
+        <span>Menú</span>
+      <%end%>
+
+      <%=link_to opciones_path, class: is_active_action("opciones")  do %>
+        <i class="fas fa-minus-square"></i>
+        <span>Opción - Menú</span>
+      <%end%>
+
+      <%=link_to menu_roles_path, class: is_active_action("menu_roles")  do %>
+        <i class="fas fa-user-cog"></i>
+        <span>Menú - Rol</span>
+      <%end%>
+
+      <%=link_to atributos_path, class: is_active_action("atributos")  do %>
+        <i class="fas fa-atom"></i>
+        <span>Atributo</span>
+      <%end%>
+
+      <%=link_to componentes_path, class: is_active_action("componentes")  do %>
+        <i class="fab fa-codepen"></i>
+        <span>Componente</span>
+      <%end%>
+
       <h6 class="collapse-header">Permisos:</h6>
-      <a class="collapse-item" href="#"><i class="fas fa-clipboard-list"></i><span>Permisos de Formulario</span></a>
-      <a class="collapse-item" href="#"><i class="fas fa-key"></i><span>Permisos de Usuario</span></a>
+      <%=link_to opcion_cas_path, class: is_active_action("opcion_cas")  do %>
+        <i class="fas fa-clipboard-list"></i>
+        <span>Permisos Formulario</span>
+      <%end%>
+
+      <%=link_to permisos_path, class: is_active_action("persona_empresa_formularios")  do %>
+        <i class="fas fa-key"></i>
+        <span>Permisos de Usuario</span>
+      <%end%>
     </div>
   </div>
 </li>
