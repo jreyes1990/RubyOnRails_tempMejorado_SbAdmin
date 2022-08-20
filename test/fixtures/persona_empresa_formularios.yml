@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descripcion: MyText
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  opcion_ca: one
+  personas_area: one
+
+two:
+  descripcion: MyText
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  opcion_ca: two
+  personas_area: two
