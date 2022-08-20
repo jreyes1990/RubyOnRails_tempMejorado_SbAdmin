@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Personas Areas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User created</th>
+      <th>User updated</th>
+      <th>Estado</th>
+      <th>Area</th>
+      <th>Persona</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @personas_areas.each do |personas_area| %>
+      <tr>
+        <td><%= personas_area.user_created_id %></td>
+        <td><%= personas_area.user_updated_id %></td>
+        <td><%= personas_area.estado %></td>
+        <td><%= personas_area.area_id %></td>
+        <td><%= personas_area.persona_id %></td>
+        <td><%= link_to 'Show', personas_area %></td>
+        <td><%= link_to 'Edit', edit_personas_area_path(personas_area) %></td>
+        <td><%= link_to 'Destroy', personas_area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Personas Area', new_personas_area_path %>

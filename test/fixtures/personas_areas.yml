@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  area: one
+  persona: one
+
+two:
+  user_created_id: 1
+  user_updated_id: 1
+  estado: MyString
+  area: two
+  persona: two
