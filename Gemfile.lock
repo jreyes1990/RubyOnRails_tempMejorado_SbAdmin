@@ -56,8 +56,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -164,7 +164,7 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    public_suffix (4.0.7)
+    public_suffix (5.0.0)
     puma (4.3.12)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -276,6 +276,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
