@@ -33,7 +33,7 @@ import "pdfmake/build/pdfmake";
 import "pdfmake/build/vfs_fonts";
 import "select2/dist/js/select2";
 
-//import './sweet-alert-confirm';
+//import 'application/sweet-alert-confirm';
 
 var pdfMake = require('pdfmake/build/pdfmake.js');
 var pdfFonts = require('pdfmake/build/vfs_fonts.js');
@@ -193,6 +193,11 @@ document.addEventListener("turbolinks:load", () => {
         width: '100%'
     });
 
+    //funcion para los mensajes de los toggle en las tablas
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    });
+
     //control de los tiempos de los flash
     setTimeout(function() {
         $(".alert").fadeTo(4000, 500).slideUp(500, function () {
@@ -200,7 +205,19 @@ document.addEventListener("turbolinks:load", () => {
         });
     });
 
+    // Configuracion para combos dinamicos menu-opciones
+    var opcion = $('#menu_rol_opcion_id').html();
 
+    $('#menu_menu_id').on('select2:select', function (e) {
+        var menu = $('#menu_menu_id :selected').text();
+        var opcionesByMenu = $(opcion).filter("optgroup[label='" + menu + "']").html();
+
+        if (opcionesByMenu){
+            $('#menu_rol_opcion_id').html(opcionesByMenu);
+        }else{
+            $('#menu_rol_opcion_id').empty();
+        }
+    });
 
 
 });
