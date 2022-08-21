@@ -20,6 +20,7 @@ class Opcion < ApplicationRecord
   validates_presence_of :nombre, :descripcion, :icono, :path, :controlador, message: ": este campo es obligatorio"
 
   has_many :opcion_cas
+  has_many :menu_roles
 
   def nombre_con_menu
     "#{self.menu.nombre} - #{selt.nombre}"
