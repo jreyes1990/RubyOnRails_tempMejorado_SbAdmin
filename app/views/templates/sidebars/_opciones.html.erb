@@ -9,7 +9,11 @@
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Opciones:</h6>
 
-      <a class="collapse-item" href="#"><i class="fas fa-users"></i><span>Usuarios</span></a>
+      <%=link_to usuarios_index_path, class: is_active_action("usuarios") do %>
+        <i class="fas fa-users"></i>
+        <span>Usuarios</span>
+      <%end%>
+
       <%=link_to empresas_path, class: is_active_action("empresas") do %>
         <i class="fas fa-building"></i>
         <span>Empresas</span>
