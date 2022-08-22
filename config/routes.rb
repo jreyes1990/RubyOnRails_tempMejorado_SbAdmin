@@ -71,11 +71,16 @@ Rails.application.routes.draw do
     get 'personas/show/:id' => "personas#show", as: 'ver_perfil'
     patch 'personas/update'
     get 'inactivar/:id' => "personas#inactivar", as: 'inactivar_usuario'
+    get "/persona/modal_cambio_contra/:persona_id" => "personas#modal_cambiar_contrasena", as: "modal_cambiar_contrasena"
+    post "personas/registrar_cambio_contrasena"
 
     #Manejo controller Usuarios
     post 'usuarios/crear_usuario'
     get 'usuarios/index'
     get 'usuarios/agregar_usuario'
+
+    get "/empresas/search" => "usuarios#search_empresa", as: "search_empresa"
+    get "/areas/search" => "usuarios#search_areas", as: "search_areas"
   end
   #get 'home/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
